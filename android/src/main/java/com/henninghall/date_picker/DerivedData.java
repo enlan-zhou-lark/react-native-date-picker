@@ -44,7 +44,8 @@ public class DerivedData {
                 break;
             }
         }
-        if((mode == Mode.time || mode == Mode.datetime) && state.derived.usesAmPm()){
+	// only use am/pm wheel on "datetime" mode, "time" mode wheel will be used for duration
+        if((mode == Mode.datetime) && state.derived.usesAmPm()){
             visibleWheels.add(WheelType.AM_PM);
         }
         return visibleWheels;
@@ -120,7 +121,10 @@ public class DerivedData {
 
     public boolean usesAmPm(){
         if(state.getIs24HourSource() == locale) return LocaleUtils.localeUsesAmPm(state.getLocale());
-        return Utils.deviceUsesAmPm();
+        // return Utils.deviceUsesAmPm();
+        // only android has 'device' flag, 'device' + 'time' mode will convert the time picker to duration picker
+        return false;
+
     }
 
     public boolean hasOnly2Wheels(){

@@ -163,6 +163,15 @@ public class Wheels {
         for (WheelType wheelType : wheels) {
             Wheel wheel = getWheel(wheelType);
             pickerWrapper.addPicker(wheel.picker.getView());
+            // only convert the time mode to duration mode, the
+            if(state.getMode() == Mode.time ){
+                if(wheelType == WheelType.HOUR){
+                   pickerWrapper.addText("hr");
+                }
+                if(wheelType == WheelType.MINUTE){
+                     pickerWrapper.addText("min");
+                }
+	    }
         }
     }
 

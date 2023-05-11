@@ -56,7 +56,7 @@ const getTitle = (props) => {
   const { title, mode } = props
   if (title === null) return ''
   if (title) return title
-  if (mode === 'time') return 'Select time'
+  if (mode === 'time') return 'Select duration'
   return 'Select date'
 }
 
